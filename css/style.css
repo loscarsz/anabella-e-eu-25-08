@@ -1,0 +1,1346 @@
+/* ==================================================
+   CARLOS & ANABELLA
+   STYLE.CSS
+================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background:
+        radial-gradient(
+            circle at top,
+            #240b1d 0%,
+            #0d050c 45%,
+            #050205 100%
+        );
+
+    color: #f9edf4;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    overflow-x: hidden;
+
+    line-height: 1.7;
+}
+
+
+/* ==============================
+   SELEÇÃO
+============================== */
+
+::selection {
+    background: #b52b68;
+    color: white;
+}
+
+
+/* ==============================
+   CORAÇÕES
+============================== */
+
+.hearts {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 10;
+}
+
+.heart {
+    position: absolute;
+
+    bottom: -40px;
+
+    color: rgba(239, 72, 133, 0.28);
+
+    animation:
+        subir 10s linear forwards;
+}
+
+@keyframes subir {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* ==============================
+   HERO
+============================== */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    position: relative;
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.eyebrow {
+    color: #eaa2c0;
+
+    font-size: 18px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: clamp(
+        55px,
+        8vw,
+        100px
+    );
+
+    line-height: 0.98;
+
+    margin-bottom: 30px;
+
+    text-shadow:
+        0 0 20px rgba(
+            255,
+            130,
+            180,
+            0.35
+        );
+}
+
+.hero h1 span {
+    font-size: 70px;
+}
+
+.hero-description {
+    max-width: 620px;
+
+    margin: auto;
+
+    font-size: 20px;
+
+    color: #d8b9c9;
+}
+
+.date-display {
+    margin: 35px 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    color: #eaa2c0;
+
+    font-size: 20px;
+
+    letter-spacing: 7px;
+}
+
+
+/* ==============================
+   BOTÕES
+============================== */
+
+.main-button {
+    border: none;
+
+    padding: 17px 32px;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a51e59,
+            #db3e7d
+        );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-family: inherit;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 35px
+        rgba(190, 38, 105, 0.3);
+
+    transition:
+        transform 0.3s,
+        box-shadow 0.3s;
+}
+
+.main-button:hover {
+    transform:
+        translateY(-4px)
+        scale(1.02);
+
+    box-shadow:
+        0 15px 45px
+        rgba(220, 50, 120, 0.45);
+}
+
+.main-button:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* ==============================
+   SEÇÕES
+============================== */
+
+main {
+    width: 100%;
+}
+
+section:not(.hero) {
+    max-width: 1000px;
+
+    margin: auto;
+
+    padding:
+        100px 30px;
+}
+
+.section-tag {
+    color: #c55b88;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 12px;
+}
+
+section h2 {
+    font-size:
+        clamp(
+            35px,
+            5vw,
+            58px
+        );
+
+    line-height: 1.1;
+
+    margin-bottom: 25px;
+}
+
+.subtext {
+    color: #c8a9b8;
+
+    max-width: 700px;
+
+    margin-bottom: 60px;
+}
+
+
+/* ==============================
+   FOTO
+============================== */
+
+.photo-section {
+    text-align: center;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+}
+
+.photo-card {
+    width: min(
+        650px,
+        100%
+    );
+
+    height: 430px;
+
+    margin:
+        0 auto 25px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 0 0 28px 28px;
+
+    border:
+        1px solid
+        rgba(229, 91, 145, 0.35);
+
+    background:
+        linear-gradient(
+            145deg,
+            #251020,
+            #10050d
+        );
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,0.45);
+}
+
+.couple-photo {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+.photo-fallback {
+    position: absolute;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    color: #c59aaa;
+}
+
+.photo-fallback span {
+    font-size: 55px;
+}
+
+.photo-fallback p {
+    font-size: 16px;
+}
+
+.photo-section h2 {
+    font-size: 30px;
+
+    margin-bottom: 0;
+}
+
+.photo-date {
+    color: #987183;
+
+    font-size: 13px;
+
+    margin-bottom: 12px;
+}
+
+
+/* ==============================
+   CONTADOR
+============================== */
+
+.counter-section {
+    text-align: center;
+}
+
+.counter {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-top: 45px;
+}
+
+.counter-box {
+    padding: 30px 15px;
+
+    border:
+        1px solid
+        rgba(210, 68, 125, 0.2);
+
+    border-radius: 18px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    backdrop-filter: blur(10px);
+}
+
+.counter-box strong {
+    display: block;
+
+    color: #f3a5c5;
+
+    font-size: 42px;
+
+    line-height: 1;
+}
+
+.counter-box span {
+    color: #a9899b;
+
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+}
+
+
+/* ==============================
+   CARTA
+============================== */
+
+.love-letter {
+    text-align: center;
+}
+
+.letter {
+    max-width: 720px;
+
+    margin: auto;
+
+    padding: 45px;
+
+    text-align: left;
+
+    border:
+        1px solid
+        rgba(220, 80, 140, 0.18);
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,0.25);
+}
+
+.letter p {
+    color: #d5bdca;
+
+    margin-bottom: 20px;
+}
+
+.letter-final {
+    color: #f0a1c2 !important;
+
+    font-size: 22px;
+
+    text-align: center;
+}
+
+.signature {
+    text-align: right;
+
+    color: #9e7187 !important;
+
+    margin-bottom: 0 !important;
+}
+
+
+/* ==============================
+   TIMELINE
+============================== */
+
+.timeline-section h2 span {
+    color: #dc6c9b;
+}
+
+.timeline {
+    position: relative;
+
+    margin-top: 70px;
+}
+
+.timeline::before {
+    content: "";
+
+    position: absolute;
+
+    left: 27px;
+
+    top: 0;
+
+    bottom: 0;
+
+    width: 1px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            #a52c61,
+            transparent
+        );
+}
+
+.timeline-item {
+    position: relative;
+
+    padding-left: 90px;
+
+    margin-bottom: 70px;
+}
+
+.timeline-dot {
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    width: 56px;
+
+    height: 56px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #170914;
+
+    border:
+        1px solid
+        #b32d68;
+
+    box-shadow:
+        0 0 25px
+        rgba(200,40,110,0.2);
+
+    font-size: 21px;
+
+    z-index: 2;
+}
+
+.timeline-content {
+    padding: 30px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+    border-radius: 22px;
+
+    background:
+        rgba(255,255,255,0.025);
+}
+
+.timeline-content > span {
+    color: #a96482;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+}
+
+.timeline-content h3 {
+    font-size: 28px;
+
+    margin: 8px 0 14px;
+
+    color: #f5dce8;
+}
+
+.timeline-content p {
+    color: #c7adb9;
+
+    margin-bottom: 15px;
+}
+
+.timeline-content strong {
+    color: #ed9abb;
+}
+
+.timeline-quote {
+    margin-top: 22px;
+
+    padding: 18px 20px;
+
+    border-left:
+        2px solid
+        #a62d62;
+
+    background:
+        rgba(
+            166,
+            45,
+            98,
+            0.06
+        );
+
+    color: #d99bb7;
+
+    font-size: 14px;
+
+    font-style: italic;
+
+    line-height: 1.7;
+
+    border-radius:
+        0 12px 12px 0;
+}
+
+.destaque-timeline {
+    text-align: center;
+
+    margin-top: 28px !important;
+
+    font-size: 20px !important;
+
+    color: #f0a6c5 !important;
+}
+
+
+/* ==============================
+   CALENDÁRIO
+============================== */
+
+.calendar-section {
+    text-align: center;
+}
+
+.calendar {
+    max-width: 650px;
+
+    margin:
+        45px auto 20px;
+
+    padding: 25px;
+
+    border:
+        1px solid
+        rgba(220,80,140,0.18);
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,0.025);
+}
+
+.calendar-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.calendar-header h3 {
+    text-transform: capitalize;
+
+    color: #edb0c9;
+
+    font-size: 20px;
+}
+
+.calendar-header button {
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        #75304e;
+
+    background:
+        transparent;
+
+    color: #ef9dbc;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.calendar-header button:hover {
+    background: #7d2450;
+
+    color: white;
+}
+
+.weekdays,
+.calendar-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    gap: 7px;
+}
+
+.weekdays {
+    margin-bottom: 8px;
+}
+
+.weekdays span {
+    color: #91697d;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    color: #c8aeba;
+
+    font-size: 14px;
+
+    position: relative;
+}
+
+.calendar-day:not(.empty):hover {
+    background:
+        rgba(220,70,130,0.12);
+}
+
+.calendar-day.love-day {
+    background:
+        linear-gradient(
+            135deg,
+            #8e174b,
+            #c72e70
+        );
+
+    color: white;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 0 18px
+        rgba(210,40,110,0.35);
+}
+
+.calendar-day.love-day::after {
+    content: "❤️";
+
+    position: absolute;
+
+    font-size: 9px;
+
+    bottom: 3px;
+}
+
+.calendar-day.today {
+    border:
+        1px solid
+        #d25b8a;
+}
+
+.calendar-legend {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    color: #987386;
+
+    font-size: 12px;
+}
+
+
+/* ==============================
+   ROLETA
+============================== */
+
+.roulette-section {
+    text-align: center;
+}
+
+.roulette-container {
+    width: 330px;
+
+    height: 350px;
+
+    margin:
+        55px auto 25px;
+
+    position: relative;
+}
+
+.roulette-pointer {
+    position: absolute;
+
+    top: -15px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 5;
+
+    color: #ff7eae;
+
+    font-size: 35px;
+
+    filter:
+        drop-shadow(
+            0 4px 10px
+            rgba(0,0,0,0.5)
+        );
+}
+
+.roulette-wheel {
+    width: 320px;
+
+    height: 320px;
+
+    border-radius: 50%;
+
+    position: relative;
+
+    margin: auto;
+
+    background:
+        conic-gradient(
+            #7b1949 0deg 30deg,
+            #bc2d70 30deg 60deg,
+            #5e1739 60deg 90deg,
+            #d03b79 90deg 120deg,
+            #761a48 120deg 150deg,
+            #c22e70 150deg 180deg,
+            #591631 180deg 210deg,
+            #d84783 210deg 240deg,
+            #731844 240deg 270deg,
+            #bd2b6c 270deg 300deg,
+            #55142f 300deg 330deg,
+            #cf3978 330deg 360deg
+        );
+
+    border:
+        8px solid
+        #321322;
+
+    box-shadow:
+        0 0 0 2px #a83b68,
+        0 20px 50px
+        rgba(0,0,0,0.45);
+
+    transition:
+        transform 4s
+        cubic-bezier(
+            0.15,
+            0.75,
+            0.15,
+            1
+        );
+}
+
+.roulette-wheel::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 15px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.2);
+
+    border-radius: 50%;
+}
+
+.roulette-center {
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 65px;
+
+    height: 65px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        #170914;
+
+    border:
+        4px solid
+        #df568b;
+
+    box-shadow:
+        0 0 25px
+        rgba(230,70,130,0.5);
+
+    font-size: 27px;
+
+    z-index: 3;
+}
+
+.roulette-button {
+    margin-top: 10px;
+}
+
+.roulette-result {
+    max-width: 650px;
+
+    margin: 30px auto 0;
+
+    padding: 20px;
+
+    min-height: 65px;
+
+    border-radius: 18px;
+
+    color: #e8cbd8;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border:
+        1px solid
+        rgba(220,80,140,0.15);
+
+    font-size: 16px;
+}
+
+
+/* ==============================
+   CARTINHAS
+============================== */
+
+.cards-section {
+    text-align: center;
+}
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+
+    margin-top: 45px;
+}
+
+.carta {
+    border:
+        1px solid
+        rgba(220,80,140,0.18);
+
+    border-radius: 20px;
+
+    padding: 30px 15px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    color: #eecfdd;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s,
+        background 0.3s;
+}
+
+.carta:hover {
+    transform:
+        translateY(-7px);
+
+    background:
+        rgba(
+            180,
+            40,
+            100,
+            0.12
+        );
+}
+
+.carta:first-letter {
+    font-size: 30px;
+}
+
+.carta span {
+    display: block;
+
+    margin-top: 10px;
+
+    font-size: 14px;
+}
+
+
+/* ==============================
+   MODAL
+============================== */
+
+.surprise-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(5,1,5,0.85);
+
+    backdrop-filter:
+        blur(10px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.3s,
+        visibility 0.3s;
+}
+
+.surprise-modal.show {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+.surprise-box {
+    width: min(
+        600px,
+        100%
+    );
+
+    padding: 45px;
+
+    position: relative;
+
+    border:
+        1px solid
+        #a93668;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #24101e,
+            #0f070c
+        );
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,0.7);
+
+    transform:
+        scale(0.9);
+
+    transition:
+        transform 0.3s;
+}
+
+.surprise-modal.show
+.surprise-box {
+    transform:
+        scale(1);
+}
+
+.close-surprise {
+    position: absolute;
+
+    top: 15px;
+
+    right: 18px;
+
+    border: none;
+
+    background: none;
+
+    color: #d48da9;
+
+    font-size: 30px;
+
+    cursor: pointer;
+}
+
+.surprise-heart {
+    font-size: 45px;
+
+    text-align: center;
+
+    margin-bottom: 15px;
+}
+
+.surprise-box h2 {
+    text-align: center;
+
+    font-size: 30px;
+
+    color: #f0a4c2;
+}
+
+.surprise-box p {
+    color: #d5becb;
+
+    text-align: center;
+
+    font-size: 16px;
+}
+
+
+/* ==============================
+   FINAL
+============================== */
+
+.final-message {
+    text-align: center;
+
+    min-height: 70vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.final-heart {
+    font-size: 65px;
+
+    animation:
+        pulsar 1.5s
+        infinite;
+}
+
+@keyframes pulsar {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+.final-message h2 {
+    max-width: 800px;
+
+    margin-top: 20px;
+}
+
+.final-message p {
+    color: #c7aab9;
+
+    margin-bottom: 10px;
+}
+
+.final-message strong {
+    color: #e992b6;
+
+    font-size: 22px;
+
+    margin-top: 25px;
+}
+
+.final-message > span {
+    color: #9f5578;
+
+    font-size: 30px;
+
+    margin-top: 10px;
+}
+
+
+/* ==============================
+   RESPONSIVO
+============================== */
+
+@media (max-width: 700px) {
+
+    .hero {
+        min-height: 100svh;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .hero h1 span {
+        font-size: 40px;
+    }
+
+    .hero-description {
+        font-size: 17px;
+    }
+
+    section:not(.hero) {
+        padding:
+            70px 18px;
+    }
+
+    .counter {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .counter-box strong {
+        font-size: 32px;
+    }
+
+    .letter {
+        padding: 25px;
+    }
+
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item {
+        padding-left: 55px;
+    }
+
+    .timeline-dot {
+        width: 42px;
+
+        height: 42px;
+
+        font-size: 16px;
+    }
+
+    .timeline-content {
+        padding: 22px;
+    }
+
+    .timeline-content h3 {
+        font-size: 23px;
+    }
+
+    .cards {
+        grid-template-columns:
+            1fr;
+    }
+
+    .photo-card {
+        height: 350px;
+    }
+
+    .roulette-container {
+        transform:
+            scale(0.82);
+
+        margin-top: 20px;
+
+        margin-bottom: -35px;
+    }
+
+    .calendar {
+        padding: 12px;
+    }
+
+    .calendar-day {
+        border-radius: 8px;
+
+        font-size: 12px;
+    }
+
+    .weekdays span {
+        font-size: 9px;
+    }
+
+    .calendar-legend {
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+    .surprise-box {
+        padding:
+            35px 22px;
+    }
+
+}
