@@ -1,34 +1,38 @@
-/* ==================================================
-   CARLOS & ANABELLA
-   SCRIPT.JS
-================================================== */
+/* =========================================================
+   CONFIGURAÇÕES
+========================================================= */
+
+// Dia em que a história começou
+const dataInicio = new Date(
+    2026,
+    5,      // Junho = 5
+    15,
+    0,
+    0,
+    0
+);
 
 
-/* ==============================
-   BOTÃO ENTRAR
-============================== */
+/* =========================================================
+   BOTÃO "ENTRAR NO NOSSO MUNDO"
+========================================================= */
 
 const botaoEntrar =
     document.getElementById("entrar");
 
-if (botaoEntrar) {
+const nossoAmor =
+    document.getElementById("nosso-amor");
+
+
+if (botaoEntrar && nossoAmor) {
 
     botaoEntrar.addEventListener(
         "click",
         () => {
 
-            const destino =
-                document.getElementById(
-                    "nosso-amor"
-                );
-
-            if (destino) {
-
-                destino.scrollIntoView({
-                    behavior: "smooth"
-                });
-
-            }
+            nossoAmor.scrollIntoView({
+                behavior: "smooth"
+            });
 
         }
     );
@@ -36,37 +40,36 @@ if (botaoEntrar) {
 }
 
 
-
-/* ==============================
+/* =========================================================
    CORAÇÕES FLUTUANTES
-============================== */
+========================================================= */
 
-const containerHearts =
+const hearts =
     document.querySelector(".hearts");
 
 
 function criarCoracao() {
 
-    if (!containerHearts) return;
+    if (!hearts) return;
 
-
-    const heart =
+    const coracao =
         document.createElement("div");
 
-
-    heart.className =
+    coracao.className =
         "heart";
 
 
     const simbolos = [
-        "♥",
-        "♡",
-        "❤",
-        "💕"
+        "❤️",
+        "💗",
+        "💕",
+        "💖",
+        "💓",
+        "💞"
     ];
 
 
-    heart.textContent =
+    coracao.textContent =
         simbolos[
             Math.floor(
                 Math.random() *
@@ -75,61 +78,45 @@ function criarCoracao() {
         ];
 
 
-    heart.style.left =
+    coracao.style.left =
         Math.random() * 100 + "%";
 
 
-    heart.style.fontSize =
-        (
-            10 +
-            Math.random() * 18
-        ) + "px";
+    coracao.style.fontSize =
+        (12 + Math.random() * 20) + "px";
 
 
-    heart.style.animationDuration =
-        (
-            6 +
-            Math.random() * 6
-        ) + "s";
+    const duracao =
+        5 + Math.random() * 5;
 
 
-    containerHearts.appendChild(
-        heart
+    coracao.style.animationDuration =
+        duracao + "s";
+
+
+    hearts.appendChild(
+        coracao
     );
 
 
     setTimeout(
         () => {
-            heart.remove();
+            coracao.remove();
         },
-        13000
+        duracao * 1000
     );
-
 }
 
 
 setInterval(
     criarCoracao,
-    700
+    800
 );
 
 
-
-/* ==============================
+/* =========================================================
    CONTADOR
-   15/06/2026
-============================== */
-
-const dataInicio =
-    new Date(
-        2026,
-        5,
-        15,
-        0,
-        0,
-        0
-    );
-
+========================================================= */
 
 function atualizarContador() {
 
@@ -142,51 +129,40 @@ function atualizarContador() {
         dataInicio.getTime();
 
 
+    // Evita números negativos
     if (diferenca < 0) {
-
         diferenca = 0;
-
     }
 
 
-    const segundo =
-        1000;
-
-    const minuto =
-        segundo * 60;
-
-    const hora =
-        minuto * 60;
-
-    const dia =
-        hora * 24;
+    const segundosTotais =
+        Math.floor(
+            diferenca / 1000
+        );
 
 
     const dias =
         Math.floor(
-            diferenca / dia
+            segundosTotais / 86400
         );
 
 
     const horas =
         Math.floor(
-            (diferenca % dia) /
-            hora
+            (segundosTotais % 86400) /
+            3600
         );
 
 
     const minutos =
         Math.floor(
-            (diferenca % hora) /
-            minuto
+            (segundosTotais % 3600) /
+            60
         );
 
 
     const segundos =
-        Math.floor(
-            (diferenca % minuto) /
-            segundo
-        );
+        segundosTotais % 60;
 
 
     const elementoDias =
@@ -194,18 +170,15 @@ function atualizarContador() {
             "dias"
         );
 
-
     const elementoHoras =
         document.getElementById(
             "horas"
         );
 
-
     const elementoMinutos =
         document.getElementById(
             "minutos"
         );
-
 
     const elementoSegundos =
         document.getElementById(
@@ -224,8 +197,10 @@ function atualizarContador() {
     if (elementoHoras) {
 
         elementoHoras.textContent =
-            String(horas)
-                .padStart(2, "0");
+            String(horas).padStart(
+                2,
+                "0"
+            );
 
     }
 
@@ -233,8 +208,10 @@ function atualizarContador() {
     if (elementoMinutos) {
 
         elementoMinutos.textContent =
-            String(minutos)
-                .padStart(2, "0");
+            String(minutos).padStart(
+                2,
+                "0"
+            );
 
     }
 
@@ -242,8 +219,24 @@ function atualizarContador() {
     if (elementoSegundos) {
 
         elementoSegundos.textContent =
-            String(segundos)
-                .padStart(2, "0");
+            String(segundos).padStart(
+                2,
+                "0"
+            );
+
+    }
+
+
+    const diasConhecidos =
+        document.getElementById(
+            "diasConhecidos"
+        );
+
+
+    if (diasConhecidos) {
+
+        diasConhecidos.textContent =
+            dias;
 
     }
 
@@ -259,396 +252,94 @@ setInterval(
 );
 
 
-
-/* ==============================
-   ROLETA
-============================== */
-
-const roleta =
-    document.getElementById(
-        "roletaWheel"
-    );
-
-
-const botaoGirar =
-    document.getElementById(
-        "girar"
-    );
-
-
-const resultado =
-    document.getElementById(
-        "resultado"
-    );
-
-
-const premios = [
-
-    "💋 voce ganhou uma declaração especial do henrique, use agora.",
-
-    "🤗 parabéns vc agora tem direito a 2 pedidos",
-
-    "🥰 Diga o porque voce me ama",
-
-    "💌 qual o motive de você me amar?.",
-
-    "🌹 ganhou um desejo especial",
-
-    "📸 Escolha umdefeito que se tornou admiravel",
-
-    "🎵 musica que sempre lembra nós 2 ",
-
-    "😂 conte um sonho para nosso futuro",
-
-    "👀 se ferrou feitiço virou contra vc, diga agora o porque vc ama o henrique",
-
-    "💖 Diga 10 metas de vida comigo",
-
-    "🔄 giro extra agora voce ganhou mais 2 giros",
-
-    "🫶 Hoje você escolhe uma prenda para o henrique"
-
-];
-
-
-let girando =
-    false;
-
-
-let rotacao =
-    0;
-
-
-function esperar(tempo) {
-
-    return new Promise(
-        resolver =>
-            setTimeout(
-                resolver,
-                tempo
-            )
-    );
-
-}
-
-
-function girarUmaVez(
-    duracao = 4000
-) {
-
-    return new Promise(
-        resolver => {
-
-            const premio =
-                Math.floor(
-                    Math.random() *
-                    premios.length
-                );
-
-
-            const segmento =
-                360 /
-                premios.length;
-
-
-            const alvo =
-                360 -
-                (
-                    premio *
-                    segmento +
-                    segmento / 2
-                );
-
-
-            const voltas =
-                5 +
-                Math.floor(
-                    Math.random() * 3
-                );
-
-
-            rotacao +=
-                voltas * 360 +
-                alvo;
-
-
-            roleta.style.transitionDuration =
-                duracao + "ms";
-
-
-            roleta.style.transform =
-                `rotate(${rotacao}deg)`;
-
-
-            setTimeout(
-                () => {
-
-                    resolver(premio);
-
-                },
-                duracao + 80
-            );
-
-        }
-    );
-
-}
-
-
-if (botaoGirar) {
-
-    botaoGirar.addEventListener(
-        "click",
-        async () => {
-
-            if (girando) return;
-
-
-            girando = true;
-
-
-            botaoGirar.disabled =
-                true;
-
-
-            resultado.textContent =
-                "A roleta está escolhendo um carinho para vocês... ❤️";
-
-
-            const premio =
-                await girarUmaVez();
-
-
-            if (premio === 10) {
-
-                resultado.textContent =
-                    "😏 O destino mandou: GIRE 5 VEZES!";
-
-
-                for (
-                    let i = 5;
-                    i >= 1;
-                    i--
-                ) {
-
-                    await esperar(650);
-
-
-                    resultado.textContent =
-                        `🎡 Girando novamente... ${i} ${
-                            i === 1
-                                ? "última vez!"
-                                : "vezes restantes!"
-                        }`;
-
-
-                    await girarUmaVez(
-                        900
-                    );
-
-                }
-
-
-                const finalPremio =
-                    Math.floor(
-                        Math.random() * 10
-                    );
-
-
-                resultado.textContent =
-                    `❤️ Depois dos 5 giros: ${
-                        premios[finalPremio]
-                    }`;
-
-
-            } else {
-
-                resultado.textContent =
-                    premios[premio];
-
-            }
-
-
-            botaoGirar.disabled =
-                false;
-
-
-            girando =
-                false;
-
-        }
-    );
-
-}
-
-
-
-/* ==============================
+/* =========================================================
    CALENDÁRIO
-============================== */
+========================================================= */
 
-const diasConhecidos =
-    document.getElementById(
-        "diasConhecidos"
-    );
-
-
-const mesAtual =
-    document.getElementById(
-        "mesAtual"
-    );
-
-
-const diasCalendario =
+const calendarioGrid =
     document.getElementById(
         "diasCalendario"
     );
 
+const tituloMes =
+    document.getElementById(
+        "mesAtual"
+    );
 
-const mesAnterior =
+const botaoMesAnterior =
     document.getElementById(
         "mesAnterior"
     );
 
-
-const mesProximo =
+const botaoMesProximo =
     document.getElementById(
         "mesProximo"
     );
 
 
-const dataConhecimento =
-    new Date(
-        2026,
-        5,
-        15
-    );
+let dataCalendario =
+    new Date();
 
 
-const nomesMeses = [
-
-    "janeiro",
-
-    "fevereiro",
-
-    "março",
-
-    "abril",
-
-    "maio",
-
-    "junho",
-
-    "julho",
-
-    "agosto",
-
-    "setembro",
-
-    "outubro",
-
-    "novembro",
-
-    "dezembro"
-
+const meses = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro"
 ];
 
 
-let calendarioAno =
-    new Date().getFullYear();
-
-
-let calendarioMes =
-    new Date().getMonth();
-
-
-
-function atualizarDiasDaHistoria() {
-
-    const hoje =
-        new Date();
-
-
-    const inicio =
-        new Date(
-            dataConhecimento
-        );
-
-
-    hoje.setHours(
-        0,
-        0,
-        0,
-        0
-    );
-
-
-    inicio.setHours(
-        0,
-        0,
-        0,
-        0
-    );
-
-
-    const diferenca =
-        Math.max(
-            0,
-            hoje - inicio
-        );
-
-
-    const dias =
-        Math.floor(
-            diferenca /
-            86400000
-        );
-
-
-    if (diasConhecidos) {
-
-        diasConhecidos.textContent =
-            dias;
-
-    }
-
-}
-
-
-
-function renderizarCalendario() {
+function criarCalendario() {
 
     if (
-        !mesAtual ||
-        !diasCalendario
-    ) return;
+        !calendarioGrid ||
+        !tituloMes
+    ) {
+        return;
+    }
 
 
-    mesAtual.textContent =
-        `${nomesMeses[calendarioMes]}
-        ${calendarioAno}`;
-
-
-    diasCalendario.innerHTML =
+    calendarioGrid.innerHTML =
         "";
+
+
+    const ano =
+        dataCalendario.getFullYear();
+
+
+    const mes =
+        dataCalendario.getMonth();
+
+
+    tituloMes.textContent =
+        `${meses[mes]} ${ano}`;
 
 
     const primeiroDia =
         new Date(
-            calendarioAno,
-            calendarioMes,
+            ano,
+            mes,
             1
         ).getDay();
 
 
     const quantidadeDias =
         new Date(
-            calendarioAno,
-            calendarioMes + 1,
+            ano,
+            mes + 1,
             0
         ).getDate();
 
 
+    // Dias vazios antes do dia 1
     for (
         let i = 0;
         i < primeiroDia;
@@ -660,12 +351,10 @@ function renderizarCalendario() {
                 "div"
             );
 
-
         vazio.className =
             "calendar-day empty";
 
-
-        diasCalendario.appendChild(
+        calendarioGrid.appendChild(
             vazio
         );
 
@@ -682,77 +371,56 @@ function renderizarCalendario() {
         dia++
     ) {
 
-        const celula =
+        const elemento =
             document.createElement(
                 "div"
             );
 
 
-        celula.className =
+        elemento.className =
             "calendar-day";
 
 
-        celula.textContent =
+        elemento.textContent =
             dia;
 
 
+        // Dia em que começou
         if (
-
-            calendarioAno ===
-                dataConhecimento
-                    .getFullYear()
-
-            &&
-
-            calendarioMes ===
-                dataConhecimento
-                    .getMonth()
-
-            &&
-
-            dia ===
-                dataConhecimento
-                    .getDate()
-
+            dia === 15 &&
+            mes === 5 &&
+            ano === 2026
         ) {
 
-            celula.classList.add(
-                "love-day"
+            elemento.classList.add(
+                "start"
             );
 
-
-            celula.title =
-                "15 de junho — o dia em que nossa história começou ❤️";
+            elemento.title =
+                "15 de junho de 2026 ❤️";
 
         }
 
 
+        // Dia atual
         if (
-
-            calendarioAno ===
-                hoje.getFullYear()
-
-            &&
-
-            calendarioMes ===
-                hoje.getMonth()
-
-            &&
-
-            dia ===
-                hoje.getDate()
-
+            dia === hoje.getDate() &&
+            mes === hoje.getMonth() &&
+            ano === hoje.getFullYear()
         ) {
 
-            celula.classList.add(
+            elemento.classList.add(
                 "today"
             );
 
+            elemento.title =
+                "Hoje ✨";
+
         }
 
 
-        diasCalendario.appendChild(
-            celula
+        calendarioGrid.appendChild(
+            elemento
         );
 
     }
@@ -760,28 +428,17 @@ function renderizarCalendario() {
 }
 
 
+if (botaoMesAnterior) {
 
-if (mesAnterior) {
-
-    mesAnterior.addEventListener(
+    botaoMesAnterior.addEventListener(
         "click",
         () => {
 
-            calendarioMes--;
+            dataCalendario.setMonth(
+                dataCalendario.getMonth() - 1
+            );
 
-
-            if (
-                calendarioMes < 0
-            ) {
-
-                calendarioMes = 11;
-
-                calendarioAno--;
-
-            }
-
-
-            renderizarCalendario();
+            criarCalendario();
 
         }
     );
@@ -789,28 +446,17 @@ if (mesAnterior) {
 }
 
 
+if (botaoMesProximo) {
 
-if (mesProximo) {
-
-    mesProximo.addEventListener(
+    botaoMesProximo.addEventListener(
         "click",
         () => {
 
-            calendarioMes++;
+            dataCalendario.setMonth(
+                dataCalendario.getMonth() + 1
+            );
 
-
-            if (
-                calendarioMes > 11
-            ) {
-
-                calendarioMes = 0;
-
-                calendarioAno++;
-
-            }
-
-
-            renderizarCalendario();
+            criarCalendario();
 
         }
     );
@@ -818,15 +464,147 @@ if (mesProximo) {
 }
 
 
-atualizarDiasDaHistoria();
-
-renderizarCalendario();
+criarCalendario();
 
 
+/* =========================================================
+   ROLETA
+========================================================= */
 
-/* ==============================
+const roleta =
+    document.getElementById(
+        "roletaWheel"
+    );
+
+const botaoRoleta =
+    document.getElementById(
+        "girar"
+    );
+
+const resultado =
+    document.getElementById(
+        "resultado"
+    );
+
+
+const resultadosRoleta = [
+
+    "Me dá um beijo agora. 💋",
+
+    "Me dá um abraço bem apertado. 🤗❤️",
+
+    "Fala 3 coisas que você ama em mim. 🥰",
+
+    "Escolhe uma música que lembre nós dois. 🎵",
+
+    "Me manda um áudio dizendo que me ama. ❤️",
+
+    "Hoje você escolhe o que vamos fazer juntos. 💕",
+
+    "Me conta uma lembrança nossa que você nunca esqueceu. 🥹",
+
+    "Faz uma declaração improvisada para mim. 💗",
+
+    "Me manda uma foto sua fazendo carinha de brava. 😂",
+
+    "Você ganhou carinho extra hoje. ❤️",
+
+    "Me chama pelo apelido mais fofo que você conseguir. 🥰",
+
+    "Me dá um beijo demorado. 💋",
+
+    "Vamos criar uma memória nova hoje. ✨",
+
+    "Queria te dedar igual vc põe o dedo nessa... 👀😂"
+
+];
+
+
+let rotacao =
+    0;
+
+let girando =
+    false;
+
+
+function girarRoleta() {
+
+    if (
+        !roleta ||
+        !resultado ||
+        girando
+    ) {
+        return;
+    }
+
+
+    girando = true;
+
+
+    resultado.textContent =
+        "Girando... ❤️";
+
+
+    const voltas =
+        5 +
+        Math.floor(
+            Math.random() * 4
+        );
+
+
+    const grau =
+        Math.floor(
+            Math.random() * 360
+        );
+
+
+    rotacao +=
+        voltas * 360 +
+        grau;
+
+
+    roleta.style.transform =
+        `rotate(${rotacao}deg)`;
+
+
+    setTimeout(
+        () => {
+
+            const indice =
+                Math.floor(
+                    Math.random() *
+                    resultadosRoleta.length
+                );
+
+
+            resultado.textContent =
+                resultadosRoleta[
+                    indice
+                ];
+
+
+            girando = false;
+
+        },
+        4100
+    );
+
+}
+
+
+if (botaoRoleta) {
+
+    botaoRoleta.addEventListener(
+        "click",
+        girarRoleta
+    );
+
+}
+
+
+/* =========================================================
    CARTINHAS
-============================== */
+========================================================= */
 
 const cartas =
     document.querySelectorAll(
@@ -834,25 +612,25 @@ const cartas =
     );
 
 
-const surprise =
+const modal =
     document.getElementById(
         "surprise"
     );
 
 
-const surpriseTitle =
+const tituloModal =
     document.getElementById(
         "surprise-title"
     );
 
 
-const surpriseText =
+const textoModal =
     document.getElementById(
         "surprise-text"
     );
 
 
-const closeSurprise =
+const botaoFechar =
     document.querySelector(
         ".close-surprise"
     );
@@ -861,76 +639,92 @@ const closeSurprise =
 const mensagens = [
 
     {
-
         titulo:
-            "gesto pequeno de amor 💗",
+            "Quando estiver triste... 💗",
 
         texto:
-            "Meu amor, venho te lembrar que nunca vai estar sozinha, sempre estarei do seu lado, eu te amo com todo amor e carinho do mundo, você é minha velinha, sempre esteri ao seu lado em todos projetos,vc e meu amor"
-
+            "Meu amor, se você abriu essa carta porque está triste, lembra que você não precisa enfrentar tudo sozinha. Eu estou aqui para você, nos momentos bons e também nos difíceis. Respira, fica calma e lembra que eu te amo muito. ❤️"
     },
 
-
     {
-
         titulo:
-            "declaração fofa 🥰",
+            "Quando sentir saudade... 🥰",
 
         texto:
-            "desde o primeiro dia que te conheci, meu coração chegou errar as batidas, você é o meu amor e sempre vais er somente você, seus problemas são nossos problemas e eu te amo muito, nunca se esqueça que to cntg sempre meu amor."
-
+            "Se a saudade apertou, lembra de todos os nossos momentos. Das nossas conversas, das nossas brincadeiras, dos abraços e de tudo aquilo que ainda vamos viver. A saudade só existe porque existe alguém muito especial para sentir falta. Eu te amo, Bella. 💗"
     },
 
-
     {
-
         titulo:
-            "Para quando quiser sorrir 🌹",
+            "Quando quiser sorrir... 💕",
 
         texto:
-            "tinhamu, só espero que vc n peide igual o thor kakakakaka ❤️"
-
+            "Se você abriu essa carta querendo sorrir, então lembra que existe um idiota aqui que provavelmente está pensando em alguma besteira para fazer você rir. 😂 Quero sempre ver esse seu sorriso lindo. Eu te amo muito. ❤️"
     }
 
 ];
 
 
+function abrirCarta(indice) {
+
+    if (
+        !modal ||
+        !tituloModal ||
+        !textoModal
+    ) {
+        return;
+    }
+
+
+    const mensagem =
+        mensagens[indice];
+
+
+    if (!mensagem) {
+        return;
+    }
+
+
+    tituloModal.textContent =
+        mensagem.titulo;
+
+
+    textoModal.textContent =
+        mensagem.texto;
+
+
+    modal.classList.add(
+        "active"
+    );
+
+
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
 cartas.forEach(
-    carta => {
+    (carta) => {
 
         carta.addEventListener(
             "click",
             () => {
 
-                const index =
+                const indice =
                     Number(
                         carta.dataset.index
                     );
 
 
-                const mensagem =
-                    mensagens[index];
-
-
-                if (!mensagem) return;
-
-
-                surpriseTitle.textContent =
-                    mensagem.titulo;
-
-
-                surpriseText.textContent =
-                    mensagem.texto;
-
-
-                surprise.classList.add(
-                    "show"
-                );
-
-
-                surprise.setAttribute(
-                    "aria-hidden",
-                    "false"
+                abrirCarta(
+                    indice
                 );
 
             }
@@ -940,51 +734,55 @@ cartas.forEach(
 );
 
 
+/* =========================================================
+   FECHAR MODAL
+========================================================= */
 
-/* ==============================
-   FECHAR CARTINHA
-============================== */
+function fecharModal() {
 
-function fecharCartinha() {
-
-    if (!surprise) return;
+    if (!modal) {
+        return;
+    }
 
 
-    surprise.classList.remove(
-        "show"
+    modal.classList.remove(
+        "active"
     );
 
 
-    surprise.setAttribute(
+    modal.setAttribute(
         "aria-hidden",
         "true"
     );
 
+
+    document.body.style.overflow =
+        "";
+
 }
 
 
-if (closeSurprise) {
+if (botaoFechar) {
 
-    closeSurprise.addEventListener(
+    botaoFechar.addEventListener(
         "click",
-        fecharCartinha
+        fecharModal
     );
 
 }
 
 
-if (surprise) {
+if (modal) {
 
-    surprise.addEventListener(
+    modal.addEventListener(
         "click",
-        evento => {
+        (evento) => {
 
             if (
-                evento.target ===
-                surprise
+                evento.target === modal
             ) {
 
-                fecharCartinha();
+                fecharModal();
 
             }
 
@@ -996,13 +794,13 @@ if (surprise) {
 
 document.addEventListener(
     "keydown",
-    evento => {
+    (evento) => {
 
         if (
             evento.key === "Escape"
         ) {
 
-            fecharCartinha();
+            fecharModal();
 
         }
 
@@ -1010,15 +808,97 @@ document.addEventListener(
 );
 
 
+/* =========================================================
+   ANIMAÇÃO DAS SEÇÕES
+========================================================= */
 
-/* ==============================
-   CONSOLE
-============================== */
+const elementos =
+    document.querySelectorAll(
+        ".photo-card, .counter-box, .timeline-item, .letter, .calendar, .carta, .roulette-container"
+    );
 
-console.log(
-    "❤️ Carlos & Anabella ❤️"
+
+const observador =
+    new IntersectionObserver(
+        (entradas) => {
+
+            entradas.forEach(
+                (entrada) => {
+
+                    if (
+                        entrada.isIntersecting
+                    ) {
+
+                        entrada.target.classList.add(
+                            "apareceu"
+                        );
+
+                        observador.unobserve(
+                            entrada.target
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+
+elementos.forEach(
+    (elemento) => {
+
+        elemento.style.opacity =
+            "0";
+
+        elemento.style.transform =
+            "translateY(30px)";
+
+        elemento.style.transition =
+            "opacity .7s ease, transform .7s ease";
+
+
+        observador.observe(
+            elemento
+        );
+
+    }
 );
 
+
+/* =========================================================
+   CORRIGE A ANIMAÇÃO DOS ELEMENTOS
+========================================================= */
+
+const estiloAnimacao =
+    document.createElement(
+        "style"
+    );
+
+
+estiloAnimacao.textContent = `
+
+    .apareceu {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+
+`;
+
+
+document.head.appendChild(
+    estiloAnimacao
+);
+
+
+/* =========================================================
+   MENSAGEM NO CONSOLE
+========================================================= */
+
 console.log(
-    "Desde 15/06/2026 — uma história sendo escrita..."
+    "❤️ Henrique e Bella — site carregado!"
 );
